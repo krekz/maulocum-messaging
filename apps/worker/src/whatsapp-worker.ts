@@ -1,4 +1,4 @@
-import { whatsappWorker } from "@/services/worker.service";
+import { whatsappWorker } from "./services/worker.service";
 
 console.log("🚀 WhatsApp Worker started");
 

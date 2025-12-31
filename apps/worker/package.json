@@ -1,0 +1,19 @@
+{
+  "name": "worker",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "bullmq": "^5.66.4",
+    "ioredis": "^5.8.2",
+    "@maulocum/shared": "workspace:*"
+  },
+  "scripts": {
+    "worker": "bun run ./src/whatsapp-worker.ts",
+    "build": "bun build ./src/whatsapp-worker.ts --outdir=dist --target=bun"
+  }
+}

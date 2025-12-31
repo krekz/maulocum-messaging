@@ -1,4 +1,5 @@
-const WAHA_CONTAINER_URL = process.env.CONTAINER_WAHA_PUBLIC_URL || "http://localhost:3000";
+const WAHA_CONTAINER_URL =
+	process.env.CONTAINER_WAHA_PUBLIC_URL || "http://waha:3000";
 const WAHA_SESSION = process.env.WAHA_START_SESSION || "default";
 const WAHA_API_KEY = process.env.WAHA_API_KEY || "api-key";
 
@@ -15,8 +16,8 @@ export class WhatsAppService {
 		try {
 			const formattedPhone = this.formatPhoneNumber(phoneNumber);
 
-			console.log(this.baseUrl)
-			console.log(WAHA_API_KEY)
+			console.log(this.baseUrl);
+			console.log(WAHA_API_KEY);
 
 			const response = await fetch(`${this.baseUrl}/api/sendText`, {
 				method: "POST",
@@ -37,7 +38,7 @@ export class WhatsAppService {
 				throw new Error(`Waha API error: ${error}`);
 			}
 
-			const result = await response.json() as { id: string };
+			const result = (await response.json()) as { id: string };
 			return {
 				success: true,
 				messageId: result.id,
@@ -55,9 +56,9 @@ export class WhatsAppService {
 		let cleaned = phoneNumber.replace(/\D/g, "");
 
 		if (cleaned.startsWith("0")) {
-			cleaned = "60" + cleaned.substring(1);
+			cleaned = `60${cleaned.substring(1)}`;
 		} else if (!cleaned.startsWith("60")) {
-			cleaned = "60" + cleaned;
+			cleaned = `60${cleaned}`;
 		}
 
 		return `${cleaned}@c.us`;

@@ -1,11 +1,11 @@
-import { Worker, type Job } from "bullmq";
 import {
 	QUEUE_NAMES,
+	redisConnection,
 	type WhatsAppNotificationJob,
 	type WhatsAppNotificationResult,
-} from "../types";
+} from "@maulocum/shared";
+import { type Job, Worker } from "bullmq";
 import { whatsappService } from "./whatsapp.service";
-import { redisConnection } from "@/config";
 
 export class WhatsAppWorker {
 	private worker: Worker<WhatsAppNotificationJob, WhatsAppNotificationResult>;
